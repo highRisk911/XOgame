@@ -1,32 +1,46 @@
 package com.highrisk911.XOgame.java.board;
 
-import com.highrisk911.XOgame.java.players.Player;
 
-import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicInteger;
+public class Board implements BoardInterface {
 
-public class Board {
+    private char currentTurn;
+    private char[][] board;
+    private final char START_CHARACTER = '_';
 
-    private int[][] board;
+    private BoardControllerInterface boardController;
+    private BoardViewerInterface boardViewer;
 
-    public void initBoard(int size){
-        board = new int[size][size];
+    public Board(){
+        boardController = new BoardController(this);
     }
 
-    public void startGame( Player one, Player two){
-        initBoard(3);
+    public char getCurrentTurn() {
+        return currentTurn;
+    }
+
+    public void setCurrentTurn(char currentTurn) {
+        this.currentTurn = currentTurn;
+    }
+
+    public char[][] getBoard() {
+        return board;
+    }
+
+    public void setBoard(char[][] board) {
+        this.board = board;
+    }
+
+    public char getSTART_CHARACTER() {
+        return START_CHARACTER;
     }
 
     @Override
-    public String toString() {
-        AtomicInteger counter = new AtomicInteger();
-        StringBuilder stringBuilder = new StringBuilder("   ");
+    public BoardViewerInterface getBoardViewer() {
+        return boardViewer;
+    }
 
-            for (int i = 0; i < board[0].length ; i++) stringBuilder.append(i+"  ");
-                    stringBuilder.append("\n");
-
-                    Arrays.stream(board).forEach((int[] arr)->{stringBuilder.append(counter.getAndIncrement() +" "+Arrays.toString(arr)+"\n");});
-
-        return stringBuilder.toString();
+    @Override
+    public BoardControllerInterface getBoardController() {
+        return boardController;
     }
 }
