@@ -17,22 +17,22 @@ public class Jude implements GameObserver{
     @Override
     public boolean isFinish(BoardInterface board) {
         char[][] boardState = board.getBoardViewer().getBoardState();
-        return   ( ruleChecker.checkRows(boardState)
-                || ruleChecker.checkColumns(boardState)
-                || ruleChecker.checkBackDiagonal(boardState)
-                || ruleChecker.checkDiagonal(boardState));
+        return (!ruleChecker.checkRows(boardState)
+                && !ruleChecker.checkColumns(boardState)
+                && !ruleChecker.checkBackDiagonal(boardState)
+                && !ruleChecker.checkDiagonal(boardState));
     }
 
     @Override
     public char getWinner(BoardInterface board) {
-        if(!isFinish(board))return '\0';
+        if(isFinish(board))return '\0';
         if(isDraw(board))return '◍';
             return ruleChecker.getWinnerCharacter();
     }
 
     @Override
     public boolean isDraw(BoardInterface board) {
-        return (board.getBoardViewer().isFull() && !isFinish(board));
+        return (board.getBoardViewer().isFull() && isFinish(board));
     }
 
     @Override

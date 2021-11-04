@@ -18,9 +18,13 @@ public class Human implements Player {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Free cells:");
-        board.getBoardViewer().getFreeCells().stream().forEach((cell)->{
+
+        for (Cell cell:
+        board.getBoardViewer().getFreeCells()) {
             System.out.print("["+cell.getRow()+"]"+"["+cell.getColumn()+"] ");
-        });
+        }
+
+
         System.out.println("\n");
         System.out.println("Put row");
         //keep EXCEPTION

@@ -16,6 +16,8 @@ public class Cell {
         this.column = column;
     }
 
+
+
     public char getPlayerChar() {
         return playerChar;
     }

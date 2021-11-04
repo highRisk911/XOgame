@@ -11,6 +11,7 @@ public class Board implements BoardInterface {
     private BoardViewerInterface boardViewer;
 
     public Board(){
+        boardViewer = new BoardViewer(this);
         boardController = new BoardController(this);
     }
 

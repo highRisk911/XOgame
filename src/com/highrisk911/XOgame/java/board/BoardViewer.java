@@ -22,6 +22,11 @@ public class BoardViewer implements BoardViewerInterface{
     }
 
     @Override
+    public void printState() {
+        Arrays.stream(board.getBoardViewer().getBoardState()).forEach(chars -> {Arrays.toString(chars);});
+    }
+
+    @Override
     public char[][] getBoardState() {
         return board.getBoard();
     }
@@ -35,10 +40,11 @@ public class BoardViewer implements BoardViewerInterface{
     public Set<Cell> getFreeCells(){
         if(isFull())return null;
         Set<Cell> freeCells = new HashSet();
+        freeCells.add(new Cell(1,2,'f'));
 
         for (int i = 0; i < board.getBoard()[0].length; i++) {
             for (int j = 0; j < board.getBoard()[0].length; j++) {
-                if(board.getBoard()[i][j] == (board.getCurrentTurn()))freeCells.add(new Cell(i,j, board.getSTART_CHARACTER()));
+                if(board.getBoard()[i][j] == board.getSTART_CHARACTER())freeCells.add(new Cell(i,j, board.getSTART_CHARACTER()));
             }
         }
         return freeCells;
