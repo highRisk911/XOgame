@@ -11,6 +11,8 @@ public class BoardViewer implements BoardViewerInterface{
     public BoardViewer(Board board){
         this.board = board;
     }
+
+
     public boolean isFull(){
         return Arrays.stream(board.getBoard()).anyMatch((chars -> {
             boolean isFull = true;
@@ -39,7 +41,7 @@ public class BoardViewer implements BoardViewerInterface{
     @Override
     public Set<Cell> getFreeCells(){
         if(isFull())return null;
-        Set<Cell> freeCells = new HashSet();
+        Set<Cell> freeCells = new HashSet<>();
         freeCells.add(new Cell(1,2,'f'));
 
         for (int i = 0; i < board.getBoard()[0].length; i++) {
