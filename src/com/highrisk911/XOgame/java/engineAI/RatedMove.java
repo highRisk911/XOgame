@@ -1,6 +1,6 @@
 package com.highrisk911.XOgame.java.engineAI;
 
-import com.highrisk911.XOgame.java.board.Cell;
+import com.highrisk911.XOgame.java.cell.Cell;
 
 public class RatedMove {
     private int score;
@@ -15,15 +15,8 @@ public class RatedMove {
         return score;
     }
 
-  /*  public void setScore(int score) {
-        this.score = score;
-    }*/
-
     public Cell getMove() {
         return move;
     }
 
-  /*  public void setMove(Cell move) {
-        this.move = move;
-    }*/
 }

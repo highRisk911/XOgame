@@ -1,7 +1,7 @@
 package com.highrisk911.XOgame.java.players;
 
 import com.highrisk911.XOgame.java.board.BoardInterface;
-import com.highrisk911.XOgame.java.board.Cell;
+import com.highrisk911.XOgame.java.cell.Cell;
 
 
 public interface Player {

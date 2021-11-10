@@ -1,4 +1,4 @@
-package com.highrisk911.XOgame.java.board;
+package com.highrisk911.XOgame.java.cell;
 
 public class Cell {
     private int row;

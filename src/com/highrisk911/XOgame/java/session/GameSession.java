@@ -3,51 +3,54 @@ package com.highrisk911.XOgame.java.session;
 
 import com.highrisk911.XOgame.java.board.Board;
 import com.highrisk911.XOgame.java.board.BoardInterface;
-import com.highrisk911.XOgame.java.board.Cell;
 import com.highrisk911.XOgame.java.players.AI;
 import com.highrisk911.XOgame.java.players.Human;
 import com.highrisk911.XOgame.java.players.Player;
 import com.highrisk911.XOgame.java.rules.GameObserver;
 import com.highrisk911.XOgame.java.rules.Jude;
 
-
 public class GameSession {
+    private Menu menu;
+    private boolean versusAI;
+    private boolean firstPlayerDoFirstMove;
+    private Player firstPlayer;
+    private Player secondPlayer;
 
-    public void startGame(){
-        GameObserver gameObserver = new Jude();
-        Player human = new Human(new GameMenu().selectPlayerChar());
-        Player aI = new AI((char)(human.getPlayerCharacter()+1),human);
-        BoardInterface board = new Board();
-        board.getBoardController().initBoard(3, human.getPlayerCharacter());
+    public GameSession(Player firstPlayer, Player secondPlayer) {
+        menu = new GameMenu();
+        versusAI = menu.isGameVersusAI();
+        firstPlayerDoFirstMove = menu.isFirstPlayerDoFirstMove();
 
-        board.getBoardViewer().printState();
-
-     for (Cell cell: board.getBoardViewer().getFreeCells()
-             ) {
-            System.out.println(cell.getColumn()+" "+cell.getPlayerChar());
-
+        if(firstPlayerDoFirstMove){
+            firstPlayer = new Human(menu.selectPlayerChar());
+            if (versusAI) secondPlayer = new AI((char) (firstPlayer.getPlayerCharacter()+2),firstPlayer);
+                else secondPlayer = new Human(menu.selectPlayerChar());
         }
-        boolean playerDoFirstMove = new GameMenu().isFirstPlayerDoFirstMove();
-
-        board.getBoardViewer().printState();
-        if(!playerDoFirstMove)board.getBoardController().fillCell(new Cell(0,0,aI.getPlayerCharacter()));
-        else board.getBoardController().fillCell(human.makeMove(board));
-
-        while (!board.getBoardViewer().isFull()){
-            board.getBoardViewer().printState();
-
-            if(playerDoFirstMove)board.getBoardController().fillCell(human.makeMove(board));
-            else board.getBoardController().fillCell(aI.makeMove(board));
-            if(gameObserver.isFinish(board))break;
-            board.getBoardViewer().printState();
-
-            if(!playerDoFirstMove)board.getBoardController().fillCell(human.makeMove(board));
-            else board.getBoardController().fillCell(aI.makeMove(board));
-            if(gameObserver.isFinish(board))break;
+        else{
+            secondPlayer = new Human(menu.selectPlayerChar());
+                if (versusAI) firstPlayer = new AI((char) (secondPlayer.getPlayerCharacter()+2),secondPlayer);
+                     else firstPlayer = new Human(menu.selectPlayerChar());
         }
-
-        System.out.println(gameObserver.gameState(board, human));
     }
 
+    public void startGame(){
+        BoardInterface board = new Board();
+        board.getBoardController().initBoard(3);
+        GameObserver gameObserver = new Jude();
+
+        while(!gameObserver.isFinish(board)){
+
+                board.getBoardViewer().printState();
+                board.getBoardController().fillCell(firstPlayer.makeMove(board));
+                board.getBoardViewer().printState();
+
+            if(gameObserver.isFinish(board))break;
+
+            board.getBoardController().fillCell(secondPlayer.makeMove(board));
+
+            if(gameObserver.isFinish(board))board.getBoardViewer().printState();
+        }
+        System.out.println(gameObserver.gameState(board,firstPlayer, secondPlayer));
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.highrisk911.XOgame.java.rules;
+package com.highrisk911.XOgame.java.rules.checker;
 
 public interface RuleCheckerInterface {
 
@@ -7,4 +7,5 @@ public interface RuleCheckerInterface {
     boolean checkRows(char[][] array);
     boolean checkColumns(char[][] array);
     char getWinnerCharacter();
+    boolean isFull(char[][] array);
 }

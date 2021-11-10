@@ -1,7 +1,7 @@
 package com.highrisk911.XOgame.java.players;
 
 import com.highrisk911.XOgame.java.board.BoardInterface;
-import com.highrisk911.XOgame.java.board.Cell;
+import com.highrisk911.XOgame.java.cell.Cell;
 import java.util.Scanner;
 
 public class Human implements Player {
@@ -18,10 +18,13 @@ public class Human implements Player {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Free cells:");
+        int count = 0;
 
-        for (Cell cell:
-        board.getBoardViewer().getFreeCells()) {
+        for (Cell cell: board.getBoardViewer().getFreeCells()) {
+            if(count%board.getBoardViewer().getBoardState().length == 0) System.out.println();
             System.out.print("["+cell.getRow()+"]"+"["+cell.getColumn()+"] ");
+
+            count++;
         }
 
 

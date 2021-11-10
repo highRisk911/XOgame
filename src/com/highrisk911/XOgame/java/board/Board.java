@@ -1,9 +1,14 @@
 package com.highrisk911.XOgame.java.board;
 
 
+import com.highrisk911.XOgame.java.board.controller.BoardController;
+import com.highrisk911.XOgame.java.board.controller.BoardControllerInterface;
+import com.highrisk911.XOgame.java.board.viewer.BoardViewer;
+import com.highrisk911.XOgame.java.board.viewer.BoardViewerInterface;
+
 public class Board implements BoardInterface {
 
-    private char currentTurn;
+
     private char[][] board;
     private final char START_CHARACTER = '_';
 
@@ -15,12 +20,10 @@ public class Board implements BoardInterface {
         boardController = new BoardController(this);
     }
 
-    public char getCurrentTurn() {
-        return currentTurn;
-    }
-
-    public void setCurrentTurn(char currentTurn) {
-        this.currentTurn = currentTurn;
+    public Board(char[][] board) {
+        this.board = board;
+        boardViewer = new BoardViewer(this);
+        boardController = new BoardController(this);
     }
 
     public char[][] getBoard() {
