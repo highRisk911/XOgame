@@ -4,4 +4,5 @@ public interface Menu {
      char selectPlayerChar();
      boolean isFirstPlayerDoFirstMove();
      boolean isGameVersusAI();
+     int gameDimension();
 }

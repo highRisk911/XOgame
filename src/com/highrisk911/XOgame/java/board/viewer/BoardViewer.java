@@ -18,9 +18,9 @@ public class BoardViewer implements BoardViewerInterface{
     public void printState() {
         char[][] temp = board.getBoard();
 
-        for (int row = 0; row < temp.length  ; row++) {
-            for (int column = 0; column < temp.length ; column++) {
-                System.out.print(temp[row][column]+" ");
+        for (char[] chars : temp) {
+            for (int column = 0; column < temp.length; column++) {
+                System.out.print(chars[column] + " ");
             }
             System.out.println();
         }

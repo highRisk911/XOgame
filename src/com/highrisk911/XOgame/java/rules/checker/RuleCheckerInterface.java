@@ -7,5 +7,4 @@ public interface RuleCheckerInterface {
     boolean checkRows(char[][] array);
     boolean checkColumns(char[][] array);
     char getWinnerCharacter();
-    boolean isFull(char[][] array);
 }

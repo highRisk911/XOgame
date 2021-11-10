@@ -3,9 +3,6 @@ package com.highrisk911.XOgame.java.players;
 import com.highrisk911.XOgame.java.board.BoardInterface;
 import com.highrisk911.XOgame.java.cell.Cell;
 import com.highrisk911.XOgame.java.engineAI.MiniMaxImpl;
-import com.highrisk911.XOgame.java.engineAI.RatedMove;
-
-import java.util.Arrays;
 
 
 public class AI implements Player{
@@ -19,8 +16,7 @@ public class AI implements Player{
 
     @Override
     public Cell makeMove(BoardInterface board) {
-        Cell move = new MiniMaxImpl(this, player).minimax(board, this, 0,-1000, 1000).getMove();
-        return move;
+        return new MiniMaxImpl(this, player).minimax(board, this, 0,-1000, 1000).getMove();
     }
 
     @Override

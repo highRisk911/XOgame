@@ -41,16 +41,6 @@ public class RuleChecker implements RuleCheckerInterface{
         return winnerCharacter;
     }
 
-    @Override
-    public boolean isFull(char[][] array) {
-        for (int row = 0; row < array[0].length ; row++) {
-            for (int column = 0; column < array[0].length; column++) {
-                if(array[row][column] == INIT_CHAR)return false;
-            }
-        }
-        return true;
-    }
-
     private boolean checkRow(char[] array){
         for (int i = 0; i < array.length-1; i++) {
             if(array[i]!=array[i+1])return false;
