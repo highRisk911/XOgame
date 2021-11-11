@@ -8,30 +8,30 @@ import com.highrisk911.XOgame.java.rules.checker.RuleCheckerInterface;
 import com.highrisk911.XOgame.java.rules.checker.TypeOfEnd;
 
 
-public class Jude implements GameObserver{
+public class Jude implements GameObserver {
 
-    private final RuleCheckerInterface ruleChecker;
+    private final RuleCheckerInterface RULE_CHECKER;
 
     public Jude() {
-        ruleChecker =  new RuleChecker();
+        RULE_CHECKER = new RuleChecker();
     }
 
     @Override
     public boolean isFinish(BoardInterface board) {
         char[][] boardState = board.getBoardViewer().getBoardState();
-        return (ruleChecker.checkRows(boardState)
-                ||  ruleChecker.checkColumns(boardState)
-                ||  ruleChecker.checkBackDiagonal(boardState)
-                ||  ruleChecker.checkDiagonal(boardState)
-                ||  isFull(board));
+        return (RULE_CHECKER.checkRows(boardState)
+                || RULE_CHECKER.checkColumns(boardState)
+                || RULE_CHECKER.checkBackDiagonal(boardState)
+                || RULE_CHECKER.checkDiagonal(boardState)
+                || isFull(board));
     }
 
     @Override
     public boolean isFull(BoardInterface board) {
         char[][] boardState = board.getBoardViewer().getBoardState();
-        for (int row = 0; row < boardState[0].length ; row++) {
-            for (int column = 0; column < boardState[0].length ; column++) {
-                if (boardState[row][column] == '_'){
+        for (int row = 0; row < boardState[0].length; row++) {
+            for (int column = 0; column < boardState[0].length; column++) {
+                if (boardState[row][column] == '_') {
                     return false;
                 }
             }
@@ -41,22 +41,23 @@ public class Jude implements GameObserver{
 
     @Override
     public char getWinner(BoardInterface board) {
-            isFinish(board);
-        return ruleChecker.getWinnerCharacter();
+        isFinish(board);
+        return RULE_CHECKER.getWinnerCharacter();
     }
 
     @Override
-    public TypeOfEnd gameState(BoardInterface board, Player player , Player opponent) {
+    public TypeOfEnd gameState(BoardInterface board, Player player, Player opponent) {
         if (getWinner(board) == player.getPlayerCharacter()) {
             return TypeOfEnd.VICTORY;
         }
         if (getWinner(board) == opponent.getPlayerCharacter()) {
             return TypeOfEnd.DEFEAT;
         }
-            return TypeOfEnd.DRAW;
+        return TypeOfEnd.DRAW;
         /*
-         * return (getWinner(board) == player.getPlayerCharacter())?TypeOfEnd.VICTORY:(getWinner(board) == opponent.getPlayerCharacter())?TypeOfEnd.DEFEAT:TypeOfEnd.DRAW
-         and can be replaced with switch-case construction
+         * return (getWinner(board) == player.getPlayerCharacter())? TypeOfEnd.VICTORY :
+         *  (getWinner(board) == opponent.getPlayerCharacter())?TypeOfEnd.DEFEAT:TypeOfEnd.DRAW
+         * and can be replaced with switch-case construction
          */
     }
 

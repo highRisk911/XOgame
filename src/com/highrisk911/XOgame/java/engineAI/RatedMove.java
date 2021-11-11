@@ -3,20 +3,20 @@ package com.highrisk911.XOgame.java.engineAI;
 import com.highrisk911.XOgame.java.cell.Cell;
 
 public class RatedMove {
-    private final int score;
-    private final Cell move;
+    private final int SCORE;
+    private final Cell MOVE;
 
     public RatedMove(int score, Cell move) {
-        this.score = score;
-        this.move = move;
+        this.SCORE = score;
+        this.MOVE = move;
     }
 
     public int getScore() {
-        return score;
+        return SCORE;
     }
 
     public Cell getMove() {
-        return move;
+        return MOVE;
     }
 
 }

@@ -1,26 +1,26 @@
 package com.highrisk911.XOgame.java.cell;
 
 public class Cell {
-    private final int row;
-    private final int column;
-    private final char playerChar;
+    private final int ROW;
+    private final int COLUMN;
+    private final char PLAYER_CHAR;
 
     public Cell(int row, int column, char playerChar) {
-        this.row = row;
-        this.column = column;
-        this.playerChar = playerChar;
+        this.ROW = row;
+        this.COLUMN = column;
+        this.PLAYER_CHAR = playerChar;
     }
 
     public char getPlayerChar() {
-        return playerChar;
+        return PLAYER_CHAR;
     }
 
     public int getRow() {
-        return row;
+        return ROW;
     }
 
     public int getColumn() {
-        return column;
+        return COLUMN;
     }
 
 }

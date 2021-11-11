@@ -1,23 +1,19 @@
 package com.highrisk911.XOgame.java.board;
 
-
 import com.highrisk911.XOgame.java.board.controller.BoardController;
 import com.highrisk911.XOgame.java.board.controller.BoardControllerInterface;
 import com.highrisk911.XOgame.java.board.viewer.BoardViewer;
 import com.highrisk911.XOgame.java.board.viewer.BoardViewerInterface;
 
 public class Board implements BoardInterface {
-
-
     private char[][] board;
     private final char START_CHARACTER = '_';
-
-    private final BoardControllerInterface boardController;
-    private final BoardViewerInterface boardViewer;
+    private final BoardControllerInterface BOARD_CONTROLLER;
+    private final BoardViewerInterface BOARD_VIEWER;
 
     public Board() {
-        boardViewer = new BoardViewer(this);
-        boardController = new BoardController(this);
+        BOARD_VIEWER = new BoardViewer(this);
+        BOARD_CONTROLLER = new BoardController(this);
     }
 
     public char[][] getBoard() {
@@ -28,17 +24,17 @@ public class Board implements BoardInterface {
         this.board = board;
     }
 
-    public char getSTART_CHARACTER() {
+    public char getStartCharacter() {
         return START_CHARACTER;
     }
 
     @Override
     public BoardViewerInterface getBoardViewer() {
-        return boardViewer;
+        return BOARD_VIEWER;
     }
 
     @Override
     public BoardControllerInterface getBoardController() {
-        return boardController;
+        return BOARD_CONTROLLER;
     }
 }

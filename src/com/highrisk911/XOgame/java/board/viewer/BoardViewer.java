@@ -3,18 +3,21 @@ package com.highrisk911.XOgame.java.board.viewer;
 import com.highrisk911.XOgame.java.board.Board;
 import com.highrisk911.XOgame.java.cell.Cell;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class BoardViewer implements BoardViewerInterface{
+public class BoardViewer implements BoardViewerInterface {
 
-    private final Board board;
+    private final Board BOARD;
+
     public BoardViewer(Board board) {
-        this.board = board;
+        this.BOARD = board;
     }
 
     @Override
     public void printState() {
-        char[][] temp = board.getBoard();
+        char[][] temp = BOARD.getBoard();
 
         for (char[] chars : temp) {
             for (int column = 0; column < temp.length; column++) {
@@ -26,23 +29,25 @@ public class BoardViewer implements BoardViewerInterface{
 
     @Override
     public char[][] getBoardState() {
-        return board.getBoard();
+        return BOARD.getBoard();
     }
 
     @Override
-    public List<Cell> getFreeCells(){
+    public List<Cell> getFreeCells() {
         List<Cell> freeCells = new ArrayList<>();
 
-        for (int i = 0; i < board.getBoard().length; i++) {
-            for (int j = 0; j < board.getBoard().length; j++) {
-                if (board.getBoard()[i][j] == board.getSTART_CHARACTER()) {
-                    freeCells.add(new Cell(i,j, board.getSTART_CHARACTER()));
+        for (int row = 0; row < BOARD.getBoard().length; row++) {
+            for (int column = 0; column < BOARD.getBoard().length; column++) {
+                if (BOARD.getBoard()[row][column] == BOARD.getStartCharacter()) {
+                    freeCells.add(new Cell(row, column, BOARD.getStartCharacter()));
                 }
             }
         }
+
         if (freeCells.isEmpty()) {
             return Collections.emptyList();
         }
+
         return freeCells;
     }
 }
