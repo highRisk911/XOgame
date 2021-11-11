@@ -24,7 +24,8 @@ public class MiniMax {
         char INIT_CHAR = '_';
         //init best move & best score
         Cell bestMove = new Cell(-1,-1, player.getPlayerCharacter());
-        int bestScore = (player.getPlayerCharacter() == playerAI.getPlayerCharacter())?TypeOfEnd.DEFEAT.getNumber():TypeOfEnd.VICTORY.getNumber();
+        int bestScore = (player.getPlayerCharacter() == playerAI.getPlayerCharacter())
+                ?TypeOfEnd.DEFEAT.getNumber():TypeOfEnd.VICTORY.getNumber();
 
         //the leaf condition for exit from recursion
         if (jude.isFull(boardState) || (TypeOfEnd.DRAW !=jude.gameState(boardState,player,opponentAI))) {
@@ -33,7 +34,8 @@ public class MiniMax {
         }
 
         for (Cell currentMove : boardState.getBoardViewer().getFreeCells()) {
-            boardState.getBoardController().fillCell(new Cell(currentMove.getRow(), currentMove.getColumn(), player.getPlayerCharacter()));
+            boardState.getBoardController().fillCell(new Cell(currentMove.getRow(),
+                    currentMove.getColumn(), player.getPlayerCharacter()));
 
 
             if (player.getPlayerCharacter() == playerAI.getPlayerCharacter()) {
@@ -44,7 +46,8 @@ public class MiniMax {
                     bestScore = score - depth * 10;
                     bestMove = new Cell(currentMove.getRow(), currentMove.getColumn(), player.getPlayerCharacter());
                     alpha = Integer.max(alpha, bestScore);
-                    boardState.getBoardController().fillCell(new Cell(currentMove.getRow(), currentMove.getColumn(), INIT_CHAR));
+                    boardState.getBoardController().fillCell(
+                            new Cell(currentMove.getRow(), currentMove.getColumn(), INIT_CHAR));
 
                     if (beta <= alpha) {
                         break;
@@ -58,13 +61,15 @@ public class MiniMax {
                     bestMove = new Cell(currentMove.getRow(), currentMove.getColumn(), player.getPlayerCharacter());
 
                     beta = Integer.min(beta, bestScore);
-                    boardState.getBoardController().fillCell(new Cell(currentMove.getRow(), currentMove.getColumn(), INIT_CHAR));
+                    boardState.getBoardController().fillCell(
+                            new Cell(currentMove.getRow(), currentMove.getColumn(), INIT_CHAR));
                     if (beta <= alpha) {
                         break;
                     }
                 }
             }
-            boardState.getBoardController().fillCell(new Cell(currentMove.getRow(), currentMove.getColumn(), INIT_CHAR));
+            boardState.getBoardController().fillCell(
+                    new Cell(currentMove.getRow(), currentMove.getColumn(), INIT_CHAR));
         }
         return new RatedMove(bestScore, bestMove);
     }
