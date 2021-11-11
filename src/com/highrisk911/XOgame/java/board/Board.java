@@ -12,16 +12,10 @@ public class Board implements BoardInterface {
     private char[][] board;
     private final char START_CHARACTER = '_';
 
-    private BoardControllerInterface boardController;
-    private BoardViewerInterface boardViewer;
+    private final BoardControllerInterface boardController;
+    private final BoardViewerInterface boardViewer;
 
-    public Board(){
-        boardViewer = new BoardViewer(this);
-        boardController = new BoardController(this);
-    }
-
-    public Board(char[][] board) {
-        this.board = board;
+    public Board() {
         boardViewer = new BoardViewer(this);
         boardController = new BoardController(this);
     }

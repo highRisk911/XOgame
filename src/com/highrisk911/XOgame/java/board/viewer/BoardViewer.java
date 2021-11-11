@@ -7,12 +7,10 @@ import java.util.*;
 
 public class BoardViewer implements BoardViewerInterface{
 
-    private Board board;
-
-    public BoardViewer(Board board){
+    private final Board board;
+    public BoardViewer(Board board) {
         this.board = board;
     }
-
 
     @Override
     public void printState() {
@@ -31,19 +29,20 @@ public class BoardViewer implements BoardViewerInterface{
         return board.getBoard();
     }
 
-
-
     @Override
     public List<Cell> getFreeCells(){
         List<Cell> freeCells = new ArrayList<>();
 
         for (int i = 0; i < board.getBoard().length; i++) {
             for (int j = 0; j < board.getBoard().length; j++) {
-                if(board.getBoard()[i][j] == board.getSTART_CHARACTER())freeCells.add(new Cell(i,j, board.getSTART_CHARACTER()));
+                if (board.getBoard()[i][j] == board.getSTART_CHARACTER()) {
+                    freeCells.add(new Cell(i,j, board.getSTART_CHARACTER()));
+                }
             }
         }
-        if(freeCells.isEmpty())return Collections.emptyList();
-
+        if (freeCells.isEmpty()) {
+            return Collections.emptyList();
+        }
         return freeCells;
     }
 }

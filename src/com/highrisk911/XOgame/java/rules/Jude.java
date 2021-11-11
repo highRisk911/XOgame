@@ -10,10 +10,10 @@ import com.highrisk911.XOgame.java.rules.checker.TypeOfEnd;
 
 public class Jude implements GameObserver{
 
-    private RuleCheckerInterface ruleChecker;
+    private final RuleCheckerInterface ruleChecker;
 
-    public Jude(){
-    ruleChecker =  new RuleChecker();
+    public Jude() {
+        ruleChecker =  new RuleChecker();
     }
 
     @Override
@@ -31,7 +31,9 @@ public class Jude implements GameObserver{
         char[][] boardState = board.getBoardViewer().getBoardState();
         for (int row = 0; row < boardState[0].length ; row++) {
             for (int column = 0; column < boardState[0].length ; column++) {
-                if (boardState[row][column] == '_')return false;
+                if (boardState[row][column] == '_'){
+                    return false;
+                }
             }
         }
         return true;
@@ -45,10 +47,13 @@ public class Jude implements GameObserver{
 
     @Override
     public TypeOfEnd gameState(BoardInterface board, Player player , Player opponent) {
-        if(getWinner(board) == player.getPlayerCharacter()) return TypeOfEnd.VICTORY;
-        if(getWinner(board) == opponent.getPlayerCharacter())return TypeOfEnd.DEFEAT;
-        return TypeOfEnd.DRAW;
-
+        if (getWinner(board) == player.getPlayerCharacter()) {
+            return TypeOfEnd.VICTORY;
+        }
+        if (getWinner(board) == opponent.getPlayerCharacter()) {
+            return TypeOfEnd.DEFEAT;
+        }
+            return TypeOfEnd.DRAW;
         /*
          * return (getWinner(board) == player.getPlayerCharacter())?TypeOfEnd.VICTORY:(getWinner(board) == opponent.getPlayerCharacter())?TypeOfEnd.DEFEAT:TypeOfEnd.DRAW
          and can be replaced with switch-case construction
