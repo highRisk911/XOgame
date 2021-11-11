@@ -33,7 +33,8 @@ public class MiniMax {
             return new RatedMove(bestScore, bestMove);
         }
 
-        for (Cell currentMove : boardState.getBoardViewer().getFreeCells()) {
+        for (Cell currentMove
+                :boardState.getBoardViewer().getFreeCells()) {
             boardState.getBoardController().fillCell(new Cell(currentMove.getRow(),
                     currentMove.getColumn(), player.getPlayerCharacter()));
 
